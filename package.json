@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "justice-league-vs-avengers",
+  "description": "As USER I want to log into an app and create a blog post",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yahplee/justice-league-vs-avengers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yahplee/justice-league-vs-avengers/issues"
+  },
+  "homepage": "https://github.com/Yahplee/justice-league-vs-avengers#readme"
+}
