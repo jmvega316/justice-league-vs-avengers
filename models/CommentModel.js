@@ -3,6 +3,7 @@ const sequelize = require("../config/connection");
 
 class Comment extends Model {}
 
+// comments should include the {id, content of the comment, who commented, and be linked to a post}
 Comment.init(
 	{
 		id: {

@@ -3,6 +3,7 @@ const sequelize = require("../config/connection");
 
 class Post extends Model {}
 
+// posts should include the {id, title, of the post content of the post, who posted (maybe the user's id)}
 Post.init(
 	{
 		id: {
