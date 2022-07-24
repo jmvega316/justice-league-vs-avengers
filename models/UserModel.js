@@ -2,7 +2,7 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
 // create our User model
-class User extends Model {}
+class User extends Model {checkPassword()}
 
 // create fields/columns for User model
 User.init(
