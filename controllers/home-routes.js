@@ -68,14 +68,34 @@ router.get("/dashboard", withAuth, async (req, res) => {
 		res.render(500).json(err);
 	}
 });
+
 // while on the dashbaord page, I want to create a post
-
+router.get("/dashboard/newpost", withAuth, async (req, res) => {
+	try {
+		res.render("newpost");
+	} catch (err) {
+		res.render(500).json(err);
+	}
+});
 // also have the option to edit my posts
+router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
+	try {
+		const editData = await Post.findByPk(req.params.id);
 
+		const editPost = editData.get({ plain: true });
+
+		res.render("editPost", {
+			editPost,
+			loggedIn: res.session.loggedIn,
+		});
+	} catch (err) {
+		res.render(500).json(err);
+	}
+});
 // if possible, on a separte page, I want to be able to render posts that I have commented
 
 // able to log in anywhere
-router.get("/login", async (req, res) => {
+router.get("/login", (req, res) => {
 	if (req.session.loggedIn) {
 		res.redirect("/");
 		return;
