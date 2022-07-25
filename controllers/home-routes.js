@@ -21,3 +21,30 @@ router.get("/", async (req, res) => {
 		res.status(500).json(err);
 	}
 });
+
+// to get one single post by the post id
+router.get("/posts/:id", async (req, res) => {
+	try {
+		const postData = Post.findByPk(req.params.id, {
+			include: [
+				{
+					model: User,
+					attribute: { exclude: [password] },
+				},
+				{
+					model: Comment,
+					include: [{ model: User, attribute: { exclude: [password] } }],
+				},
+			],
+		});
+
+		const singlePost = postData.get({ plain: true });
+
+		res.render("postpage", {
+			singlePost,
+			loggedIn: req.session.loggedIn,
+		});
+	} catch (err) {
+		res.render(500).json(err);
+	}
+});
