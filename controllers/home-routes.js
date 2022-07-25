@@ -50,7 +50,24 @@ router.get("/posts/:id", async (req, res) => {
 });
 
 // the other page to render is the dashbaord page
+router.get("/dashboard", withAuth, async (req, res) => {
+	try {
+		const postData = await Post.findAll({
+			where: {
+				user_id: req.session.user_id,
+			},
+		});
 
+		const dashboard = postData.map((post) => post.get({ plain: true }));
+
+		res.render("dashboard", {
+			dashboard,
+			loggedIn: req.session.loggedIn,
+		});
+	} catch (err) {
+		res.render(500).json(err);
+	}
+});
 // while on the dashbaord page, I want to create a post
 
 // also have the option to edit my posts
