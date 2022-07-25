@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
 // to get one single post by the post id
 router.get("/posts/:id", async (req, res) => {
 	try {
-		const postData = Post.findByPk(req.params.id, {
+		const postData = await Post.findByPk(req.params.id, {
 			include: [
 				{
 					model: User,
@@ -47,4 +47,30 @@ router.get("/posts/:id", async (req, res) => {
 	} catch (err) {
 		res.render(500).json(err);
 	}
+});
+
+// the other page to render is the dashbaord page
+
+// while on the dashbaord page, I want to create a post
+
+// also have the option to edit my posts
+
+// if possible, on a separte page, I want to be able to render posts that I have commented
+
+// able to log in anywhere
+router.get("/login", async (req, res) => {
+	if (req.session.loggedIn) {
+		res.redirect("/");
+		return;
+	}
+
+	res.render("login");
+});
+// able to log out anywhere
+router.get("/signup", (req, res) => {
+	if (req.session.loggedIn) {
+		res.redirect("/");
+		return;
+	}
+	res.render("signup");
 });
