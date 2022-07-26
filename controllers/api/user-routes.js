@@ -17,3 +17,41 @@ router.post("/", async (req, res) => {
 		res.status(500).json(err);
 	}
 });
+
+// user can be logged in by creating the session
+// need to compare the password with the password stored in the seeds
+// will need to reference the email to match the entered password
+router.post("/login", async (req, res) => {
+	try {
+		const userData = await User.findOne({
+			where: {
+				email: user.body.email,
+			},
+		});
+
+		if (!userData) {
+			res.status(400).json({
+				message: "The email or password is incorrect. Please try again.",
+			});
+			return;
+		}
+
+		const userPassword = await userData.checkPassword(req.body.password);
+		if (!userPassword) {
+			res.status(400).json({
+				message: "The email or password is incorrect. Please try again.",
+			});
+			return;
+		}
+
+		req.session.save(() => {
+			req.session.user_id = userData.dataValues.id;
+			req.session.loggedIn = true;
+			res.json({ user: userData, message: "Successful logged in. Welcome!" });
+		});
+	} catch (err) {
+		res.status(500).json(err);
+	}
+});
+
+// and also be logged out by deleting the session

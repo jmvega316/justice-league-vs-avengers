@@ -45,7 +45,7 @@ router.get("/posts/:id", async (req, res) => {
 			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {
-		res.render(500).json(err);
+		res.status(500).json(err);
 	}
 });
 
@@ -65,7 +65,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {
-		res.render(500).json(err);
+		res.status(500).json(err);
 	}
 });
 
@@ -74,7 +74,7 @@ router.get("/dashboard/newpost", withAuth, async (req, res) => {
 	try {
 		res.render("newpost");
 	} catch (err) {
-		res.render(500).json(err);
+		res.status(500).json(err);
 	}
 });
 // also have the option to edit my posts
@@ -89,7 +89,7 @@ router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
 			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {
-		res.render(500).json(err);
+		res.status(500).json(err);
 	}
 });
 // if possible, on a separte page, I want to be able to render posts that I have commented
@@ -111,7 +111,7 @@ router.get("/following", withAuth, async (req, res) => {
 			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {
-		res.render(500).json(err);
+		res.status(500).json(err);
 	}
 });
 // able to log in anywhere
