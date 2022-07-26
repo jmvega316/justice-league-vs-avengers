@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { json } = require("sequelize/types");
 const { User } = require("../../models");
 
 // sign up and create credentials in the database
