@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { json } = require("sequelize/types");
 const { User } = require("../../models");
 
 // sign up and create credentials in the database
@@ -55,3 +56,18 @@ router.post("/login", async (req, res) => {
 });
 
 // and also be logged out by deleting the session
+router.post("/logout", async (req, res) => {
+	try {
+		if (req.session.loggedIn) {
+			req.session.destroy(() => {
+				res.status(204).end();
+			});
+		} else {
+			res.status(400).end();
+		}
+	} catch (err) {
+		res.status(500).json(err);
+	}
+});
+
+module.exports = router;
