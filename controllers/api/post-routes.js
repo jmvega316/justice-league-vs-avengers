@@ -1,7 +1,5 @@
 const router = require("express").Router();
-const { json } = require("sequelize/types");
 const { Post } = require("../../models");
-const { update } = require("../../models/PostModel");
 const withAuth = require("../../utils/auth");
 
 // posts can be created, updated, or deleted
