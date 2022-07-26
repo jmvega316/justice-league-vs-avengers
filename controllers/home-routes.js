@@ -45,7 +45,7 @@ router.get("/posts/:id", async (req, res) => {
 			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {
-		res.render(500).json(err);
+		res.status(500).json(err);
 	}
 });
 
@@ -65,7 +65,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {
-		res.render(500).json(err);
+		res.status(500).json(err);
 	}
 });
 
@@ -74,7 +74,7 @@ router.get("/dashboard/newpost", withAuth, async (req, res) => {
 	try {
 		res.render("newpost");
 	} catch (err) {
-		res.render(500).json(err);
+		res.status(500).json(err);
 	}
 });
 // also have the option to edit my posts
@@ -86,14 +86,34 @@ router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
 
 		res.render("editPost", {
 			editPost,
-			loggedIn: res.session.loggedIn,
+			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {
-		res.render(500).json(err);
+		res.status(500).json(err);
 	}
 });
 // if possible, on a separte page, I want to be able to render posts that I have commented
+router.get("/following", withAuth, async (req, res) => {
+	try {
+		const commentedPostData = await Post.findAll({
+			where: {
+				user_id: req.session.id.user_id,
+				post_id: req.body.post_id,
+			},
+		});
 
+		const followComment = commentedPostData.map((post) =>
+			post.get({ plain: true })
+		);
+
+		res.render("follow", {
+			followComment,
+			loggedIn: req.session.loggedIn,
+		});
+	} catch (err) {
+		res.status(500).json(err);
+	}
+});
 // able to log in anywhere
 router.get("/login", (req, res) => {
 	if (req.session.loggedIn) {
@@ -111,3 +131,5 @@ router.get("/signup", (req, res) => {
 	}
 	res.render("signup");
 });
+
+module.exports = router;
