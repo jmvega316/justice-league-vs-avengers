@@ -49,7 +49,7 @@ router.get("/posts/:id", async (req, res) => {
 	}
 });
 
-// the other page to render is the dashbaord page
+// get posts by user on the dashbaord page
 router.get("/dashboard", withAuth, async (req, res) => {
 	try {
 		const postData = await Post.findAll({
@@ -58,10 +58,10 @@ router.get("/dashboard", withAuth, async (req, res) => {
 			},
 		});
 
-		const dashboard = postData.map((post) => post.get({ plain: true }));
+		const userPosts = postData.map((post) => post.get({ plain: true }));
 
 		res.render("dashboard", {
-			dashboard,
+			userPosts,
 			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {
@@ -86,27 +86,6 @@ router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
 
 		res.render("editpost", {
 			editPost,
-			loggedIn: req.session.loggedIn,
-		});
-	} catch (err) {
-		res.status(500).json(err);
-	}
-});
-
-// to get User posts on the Dashboard
-router.get("/dashboard", withAuth, async (req, res) => {
-	try {
-		const postData = await Post.findAll({
-			where: {
-				user_id: req.session.user_id,
-			},
-			order: [["id", "DESC"]],
-		});
-
-		const userPosts = postData.map((post) => post.get({ plain: true }));
-
-		res.render("dashboard", {
-			userPosts,
 			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {

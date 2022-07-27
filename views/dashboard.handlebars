@@ -1,19 +1,17 @@
 <div class="text-center">
     <h2 class="p-4">Dashboard</h2>
-    <a href="/dashboard/newpost"><button style="background-color:tomato">Create New Fight Post</button></a>
+    <a href="/dashboard/newpost"><button style="background-color:tomato;margin:10px;">Create New Fight Post</button></a>
 </div>
 
 
 <div class="text-center">
-  <h3 class="p-4">Your Posts</h3>
+  <h3 class="p-5">Your Posts</h3>
   <ol>
     {{#each userPosts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/editpost/{{id}}" class="edit-link">Edit post</a>
+      <button class="mr-5 mb-4"><a href="/dashboard/editpost/{{id}}" class="edit-link">Edit post</a></button>
     </li>
     {{/each}}
   </ol>
 </div>
-
-

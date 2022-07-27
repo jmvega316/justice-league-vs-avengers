@@ -37,6 +37,14 @@ button {
   border-radius: 5px;
 }
 
+.edit-link {
+  color:white;
+}
+.edit-link:hover {
+  color:white;
+  text-decoration: none;
+}
+
 nav {
   text-align: center;
 }
