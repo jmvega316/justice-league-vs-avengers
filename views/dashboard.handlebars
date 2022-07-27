@@ -7,7 +7,7 @@
 <div class="text-center">
   <h3 class="p-4">Your Posts</h3>
   <ol>
-    {{#each dashPosts as |dashpost|}}
+    {{#each userPosts as |post|}}
     <li>
       {{> post-info post}}
       <a href="/dashboard/editpost/{{id}}" class="edit-link">Edit post</a>
