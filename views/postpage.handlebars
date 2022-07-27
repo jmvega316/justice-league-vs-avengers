@@ -1,22 +1,35 @@
-{{> post-info post}}
-
-{{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
+<article class="text-center">
+  <h3 class="p-4">{{singlePost.title}}</h3>
+  <div class="post-body p-5" >
+    <p>{{singlePost.contents}}</p>
   </div>
-
-  <div>
-    <button type="submit">Add comment</button>
+  <div class="meta">
+    {{singlePost.user.username}} created on {{format_date singlePost.createdAt}} at {{format_time singlePost.createdAt}}
   </div>
-</form>
+</div>
 
-{{/if}}
+<div class="comment-area text-center">
+  <form class="comment-form">
+    <div>
+      <textarea name="comment-body"></textarea>
+    </div>
 
-{{> comments post.comments}}
+    <div>
+      <button type="submit">Add comment</button>
+    </div>
+  </form>
 
-{{#if loggedIn}}
+  {{#each singlePost.comments as |comments|}}
+  <section class="comment">
+    <div class="meta">
+      {{user.username}} on {{format_date createdAt}}
+    </div>
+    <p class="text">
+      {{contents}}
+    </p>
+  </section>
+  {{/each}}
+</div>
+
 <script src="/javascript/comment.js"></script>
-{{/if}}
 
-<a href="/dashboard"> &larr; Back to dashboard</a>

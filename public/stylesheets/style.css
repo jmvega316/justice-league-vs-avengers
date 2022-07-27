@@ -19,6 +19,7 @@ a {
   transition: color .1s;
   font-size: 25;
   margin: 30px;
+  color: dodgerblue
 }
 
 a:hover {
@@ -36,10 +37,6 @@ button {
   border-radius: 5px;
 }
 
-button:hover {
-  background-color:dodgerblue;
-}
-
 nav {
   text-align: center;
 }
@@ -47,6 +44,13 @@ nav {
 .post-list {
   margin: 0;
   padding: 0;
+
+}
+
+.title {
+  font-size: 26px;
+  font-family:fantasy;
+  padding:10px;
 }
 
 textarea, input {
@@ -101,6 +105,15 @@ h1 {
   font-size: 40;
 }
 
+div.post-body {
+  padding:2px;
+  border-top: 1px solid #ccc;
+}
+
+p {
+  font-size:20px;
+}
+
 main {
   flex: 1;
   padding: 2% 4%;
@@ -113,10 +126,10 @@ main {
   cursor: pointer;
   text-decoration: none;
   color: dodgerblue;
-  font-size: 100%;
+  font-size: 25;
   font-weight: bold;
   transition: color .1s;
-  margin-left: 16px;
+  margin-left: 30px;
 }
 
 .btn-no-style:hover {
@@ -128,7 +141,7 @@ main {
   background-color: tomato;
 }
 
-.post {
+.post{
   margin-bottom: 2%;
   line-height: 150%;
 }
@@ -166,10 +179,11 @@ main {
   background-color:;
 } */
 
-.comment .meta {
-  font-size: 90%;
-  margin-bottom: .5%;
-  opacity: .6;
+.meta {
+  font-size: 15px;
+  margin: 5px;
+  color:goldenrod;
+
 }
 
 .new-post-form input {

@@ -1,10 +1,10 @@
 <article class="post">
   <div class="title">
-    <a href="/post/{{id}}">{{title}}</a>
+    <a href="/posts/{{id}}">{{title}}</a>
   </div>
   <div class="meta">
-    Created by {{user.username}} on {{format_date created_at}} at {{format_time createdAt}}
+    Created by {{user.username}} on {{format_date createdAt}} at {{format_time createdAt}}
     |
-    <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+    <a href="/posts/{{id}}" style="color:tomato">{{comments.length}} {{format_plural "comment" comments.length}}</a>
   </div>
 </article>
