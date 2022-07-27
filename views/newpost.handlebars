@@ -1,0 +1,42 @@
+<section>
+<h2>Create New Fight Post</h2>
+<div class="container">
+      <!-- Every grid layout we create starts with an HTML element receiving a class of row -->
+      <!-- align-items-end change the alignment of flex items to end -->
+      <div class="row align-items-end">
+        <div class="col-12 col-md-6 text-center">
+          <img src="./assets/images/JLDCLogo2.png" alt="Justice League Logo" width="200" height="auto"/>
+          <h1>Justice League Team</h1>
+          <button class="btn btn-primary" id = "JLPickButton"> 
+            Random Pick
+          </button>
+          <div id ="JLHero" >
+          </div>
+        </div>
+        <!-- Uses a combination of col-* values to make full-size on small devices and half-size on medium or larger devices -->
+        <div class="col-12 col-md-6 text-center">
+          <img src="./assets/images/AvengersLogo1.png" alt="Avengers Logo" width="300" height="auto" />
+          <h1>Avengers Team</h1>
+          <button class="btn btn-primary" id = "AvengerPickButton"> 
+            Random Pick
+          </button>
+          <div id ="AVHero" >
+          </div>
+        </div>
+      </div>
+    </div>
+<form class="new-post-form">
+    <div>
+      <label for="post-title">Title</label>
+      <input type="text" id="post-title" name="post-title" />
+    </div>
+    <div>
+      <label for="post-content">Content</label>
+      <textarea id="post-content" name="post-content"></textarea>
+      {{!-- need backend to save and reload content in the viewcomment--}}
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+  </section>
+
+  <script src="/javascript/add-post.js"></script>
