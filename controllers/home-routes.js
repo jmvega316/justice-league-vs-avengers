@@ -94,7 +94,7 @@ router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
 });
 // if possible, on a separte page, I want to be able to render posts that I have commented
 
-router.get("/following", withAuth, async (req, res) => {
+router.get("/follow", withAuth, async (req, res) => {
 	try {
 		const commentedPostData = await Comment.findAll({
 			where: {
