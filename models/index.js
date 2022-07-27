@@ -1,6 +1,7 @@
 const Post = require("./PostModel");
 const User = require("./UserModel");
 const Comment = require("./CommentModel");
+const Hero = require("./HeroModel");
 
 // one user can have many posts
 User.hasMany(Post, {
@@ -32,4 +33,13 @@ Comment.belongsTo(Post, {
 	foreignKey: "post_id",
 });
 
+// one post can have many (2) heros
+Post.hasMany(Hero, {
+	foreignKey: "post_id",
+});
+
+// heroes belongs to post
+Hero.belongsTo(Post, {
+	foreignKey: "post_id",
+});
 module.exports = { User, Post, Comment };
