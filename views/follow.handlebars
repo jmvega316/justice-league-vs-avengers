@@ -1,13 +1,11 @@
-{{#if posts.length}}
-<div>
-  <h2>Your Posts</h2>
+<div class="text-center">
+  <h3 class="p-4">Posts You Follow</h3>
   <ol>
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+      <a href="/dashboard/editpost/{{post.id}}" class="edit-link">Edit post</a>
     </li>
     {{/each}}
   </ol>
 </div>
-{{/if}}

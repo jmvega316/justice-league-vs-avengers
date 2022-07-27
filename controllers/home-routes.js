@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
 	try {
 		const postData = await Post.findAll({
 			include: [{ model: User, attributes: { exclude: ["password"] } }],
-			// I want to order in descending orderr
+			// I want to order in descending order
 			order: [["id", "DESC"]],
 		});
 

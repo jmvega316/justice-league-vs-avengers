@@ -1,19 +1,19 @@
-<div class="text-center p-2">
-    <h2 class="p-5">Dashboard</h2>
+<div class="text-center">
+    <h2 class="p-4">Dashboard</h2>
     <a href="/dashboard/newpost"><button style="background-color:tomato">Create New Fight Post</button></a>
 </div>
 
-{{#if posts.length}}
-<div>
-  <h2>Your Posts</h2>
+
+<div class="text-center">
+  <h3 class="p-4">Your Posts</h3>
   <ol>
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+      <a href="/dashboard/editpost/{{post.id}}" class="edit-link">Edit post</a>
     </li>
     {{/each}}
   </ol>
 </div>
-{{/if}}
+
 
