@@ -19,9 +19,7 @@ async function signupFormHandler(event) {
       if (response.ok) {
         document.location.replace('/login');
       } else {
-        alert(`You have entered an invalid input.
-        Please check to see the following requirement:
-        Password must be at least 4 characters long.`);
+        alert(`You have entered an invalid input. Password must be at least 4 characters long.`);
       }
     }
   }

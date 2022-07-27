@@ -11,7 +11,7 @@ async function deleteFormHandler(event) {
   if (response.ok) {
     document.location.replace('/dashboard/');
   } else {
-    alert(response.statusText);
+    alert("Failed to delete the post. Please try again!");
   }
 }
 

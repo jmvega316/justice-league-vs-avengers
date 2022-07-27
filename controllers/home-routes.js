@@ -84,7 +84,7 @@ router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
 
 		const editPost = editData.get({ plain: true });
 
-		res.render("editPost", {
+		res.render("editpost", {
 			editPost,
 			loggedIn: req.session.loggedIn,
 		});
