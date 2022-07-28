@@ -101,9 +101,16 @@ router.get("/follow", withAuth, async (req, res) => {
 			where: {
 				user_id: req.session.user_id,
 			},
-			include: {
-				model: Post,
-			},
+			include: [
+				{
+					model: User,
+					attributes: { exclude: ["password"] },
+				},
+				{
+					model: Post,
+					include: [{ model: User, attributes: { exclude: ["password"] } }],
+				},
+			],
 		});
 
 		const followComment = commentedPostData.map((post) =>

@@ -37,8 +37,22 @@ button {
   border-radius: 5px;
 }
 
+.jumbotron1 {
+  background-color: slateblue ;
+  padding: 26px;
+  margin-bottom: 30px;
+}
+
+.jumbotron2 {
+  background-color: gold;
+  padding: 26px;
+  margin-bottom: 30px;
+}
+
 .edit-link {
   color:white;
+  margin:20px;
+  margin-right:20px;
 }
 .edit-link:hover {
   color:white;
