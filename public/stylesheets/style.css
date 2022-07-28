@@ -49,6 +49,11 @@ button {
   margin-bottom: 30px;
 }
 
+input {
+  width: 500px;
+  text-align: center;
+}
+
 .edit-link {
   color:white;
   margin:20px;
@@ -116,7 +121,7 @@ header {
   padding: 0 10%;
 }
 
-h1, h3 {
+h1, h2 {
   font-family:fantasy;
   color:white;
 }
@@ -133,7 +138,9 @@ div.post-body {
 }
 
 p {
+  margin-top: 50px;
   font-size:20px;
+  font-family: fantasy;
 }
 
 main {
@@ -193,19 +200,15 @@ main {
 }
 
 .comment {
-  padding: 2%;
-  margin: 2%;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
-
-/* .comment:nth-child(odd) {
-  background-color:;
-} */
 
 .meta {
   font-size: 15px;
+  font-family:Arial, Helvetica, sans-serif;
   margin: 5px;
-  color:goldenrod;
-
+  color:gold;
 }
 
 .new-post-form input {
