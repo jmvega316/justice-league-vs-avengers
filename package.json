@@ -16,7 +16,7 @@
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon server.js",
-    "seed": "node seeds/seed.js"
+    "seed": "node seeds"
   },
   "name": "justice-league-vs-avengers",
   "description": "As USER I want to log into an app and create a blog post",
