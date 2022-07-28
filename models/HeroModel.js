@@ -11,6 +11,18 @@ Hero.init(
 			primaryKey: true,
 			autoIncrement: true,
 		},
+		hero_name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		category: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		image: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 		post_id: {
 			type: DataTypes.INTEGER,
 			references: {
@@ -25,7 +37,7 @@ Hero.init(
 		timestamps: true,
 		freezeTableName: true,
 		underscored: true,
-		modelName: "comment",
+		modelName: "hero",
 	}
 );
 
