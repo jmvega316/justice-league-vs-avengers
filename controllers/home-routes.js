@@ -1,22 +1,13 @@
 const router = require("express").Router();
-const { User, Post, Comment } = require("../models");
+const { User, Post, Comment, Hero } = require("../models");
 const withAuth = require("../utils/auth");
 
 // to get all of the posts and render them
 router.get("/", async (req, res) => {
 	try {
 		const postData = await Post.findAll({
-			include: [
-				{
-					model: User,
-					attributes: { exclude: ["password"] },
-				},
-				{
-					model: Comment,
-					include: [{ model: User, attributes: { exclude: ["password"] } }],
-				},
-					],
-			// I want to order in descending order
+			include: [{ model: User, attributes: { exclude: ["password"] } }],
+			// I want to order in descending orderr
 			order: [["id", "DESC"]],
 		});
 
@@ -58,7 +49,7 @@ router.get("/posts/:id", async (req, res) => {
 	}
 });
 
-// get posts by user on the dashbaord page
+// the other page to render is the dashbaord page
 router.get("/dashboard", withAuth, async (req, res) => {
 	try {
 		const postData = await Post.findAll({
@@ -68,10 +59,10 @@ router.get("/dashboard", withAuth, async (req, res) => {
 			order: [["id", "DESC"]],
 		});
 
-		const userPosts = postData.map((post) => post.get({ plain: true }));
+		const dashboard = postData.map((post) => post.get({ plain: true }));
 
 		res.render("dashboard", {
-			userPosts,
+			dashboard,
 			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {
@@ -82,7 +73,27 @@ router.get("/dashboard", withAuth, async (req, res) => {
 // while on the dashbaord page, I want to create a post
 router.get("/dashboard/newpost", withAuth, async (req, res) => {
 	try {
-		res.render("newpost");
+		const avengerData = await Hero.findAll({
+			where: {
+				category: "avengers",
+			},
+		});
+		const justiceData = await Hero.findAll({
+			where: {
+				category: "JL",
+			},
+		});
+
+		const avengers = avengerData.map((avenger) => avenger.get({ plain: true }));
+		const justiceLeague = justiceData.map((justice) =>
+			justice.get({ plain: true })
+		);
+
+		res.render("newpost", {
+			avengers,
+			justiceLeague,
+			loggedIn: req.session.loggedIn,
+		});
 	} catch (err) {
 		res.status(500).json(err);
 	}
@@ -94,7 +105,7 @@ router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
 
 		const editPost = editData.get({ plain: true });
 
-		res.render("editpost", {
+		res.render("editPost", {
 			editPost,
 			loggedIn: req.session.loggedIn,
 		});
@@ -104,22 +115,15 @@ router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
 });
 
 // if possible, on a separte page, I want to be able to render posts that I have commented
-
 router.get("/follow", withAuth, async (req, res) => {
 	try {
 		const commentedPostData = await Comment.findAll({
 			where: {
 				user_id: req.session.user_id,
 			},
-			include: [
-				{
-					model: User,
-					attributes: { exclude: ["password"] },
-				},
-				{
-					model: Post,
-				},
-			],
+			include: {
+				model: Post,
+			},
 		});
 
 		const followComment = commentedPostData.map((post) =>
@@ -134,6 +138,9 @@ router.get("/follow", withAuth, async (req, res) => {
 		res.status(500).json(err);
 	}
 });
+
+// be able to render avengers/JL's name, image onto the page
+
 // able to log in anywhere
 router.get("/login", (req, res) => {
 	if (req.session.loggedIn) {
