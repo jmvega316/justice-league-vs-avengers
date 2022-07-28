@@ -84,7 +84,7 @@ router.get("/dashboard/newpost", withAuth, async (req, res) => {
 		});
 		const justiceData = await Hero.findAll({
 			where: {
-				category: "justice",
+				category: "justiceLeague",
 			},
 		});
 
@@ -103,6 +103,7 @@ router.get("/dashboard/newpost", withAuth, async (req, res) => {
 	}
 });
 
+//
 router.get("/dashboard/newpost/:category", withAuth, async (req, res) => {
 	try {
 		const heroData = await Hero.findAll({
