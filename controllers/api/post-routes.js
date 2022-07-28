@@ -10,6 +10,8 @@ router.post("/", withAuth, async (req, res) => {
 			title: req.body.title,
 			contents: req.body.contents,
 			user_id: req.session.user_id,
+			// avenger_id: req.body.avenger_id
+			//justice_id: req.body.justice_id
 		});
 
 		console.log(newPost);
