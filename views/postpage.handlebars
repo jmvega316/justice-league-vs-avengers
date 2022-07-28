@@ -1,4 +1,4 @@
- <div class="jumbotron2 jumbotron-fluid text-center">
+<div class="jumbotron2 jumbotron-fluid text-center">
   <div class="container">
      <h2 class="p-2">
      {{singlePost.title}}
@@ -14,6 +14,9 @@
     {{singlePost.user.username}} created on {{format_date singlePost.createdAt}} at {{format_time singlePost.createdAt}}
   </div>
 </div>
+
+{{!-- this is where we would render the images and name of heroes --}}
+
 
 <div class="comment-area text-center" style="border-top: 1px solid #ccc">
   <form class="comment-form mt-5">

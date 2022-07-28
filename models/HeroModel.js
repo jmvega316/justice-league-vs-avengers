@@ -29,7 +29,7 @@ Hero.init(
 				model: "post",
 				key: "id",
 			},
-			allowNull: false,
+			allowNull: true,
 		},
 	},
 	{

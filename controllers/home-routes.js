@@ -35,6 +35,10 @@ router.get("/posts/:id", async (req, res) => {
 					model: Comment,
 					include: [{ model: User, attributes: { exclude: ["password"] } }],
 				},
+				{
+					model: Hero,
+					attributes: { exclude: ["category"] },
+				},
 			],
 		});
 
@@ -80,7 +84,7 @@ router.get("/dashboard/newpost", withAuth, async (req, res) => {
 		});
 		const justiceData = await Hero.findAll({
 			where: {
-				category: "JL",
+				category: "justice",
 			},
 		});
 
@@ -98,6 +102,23 @@ router.get("/dashboard/newpost", withAuth, async (req, res) => {
 		res.status(500).json(err);
 	}
 });
+
+router.get("/dashboard/newpost/:category", withAuth, async (req, res) => {
+	try {
+		const heroData = await Hero.findAll({
+			where: {
+				category: req.params.category,
+			},
+		});
+
+		const heroes = heroData.map((hero) => hero.get({ plain: true }));
+
+		res.render("heroes", { heroes });
+	} catch (err) {
+		res.status(500).json(err);
+	}
+});
+
 // also have the option to edit my posts
 router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
 	try {
