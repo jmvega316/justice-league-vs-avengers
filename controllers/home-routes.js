@@ -6,7 +6,16 @@ const withAuth = require("../utils/auth");
 router.get("/", async (req, res) => {
 	try {
 		const postData = await Post.findAll({
-			include: [{ model: User, attributes: { exclude: ["password"] } }],
+			include: [
+				{
+					model: User,
+					attributes: { exclude: ["password"] },
+				},
+				{
+					model: Comment,
+					include: [{ model: User, attributes: { exclude: ["password"] } }],
+				},
+					],
 			// I want to order in descending order
 			order: [["id", "DESC"]],
 		});
@@ -56,6 +65,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 			where: {
 				user_id: req.session.user_id,
 			},
+			order: [["id", "DESC"]],
 		});
 
 		const userPosts = postData.map((post) => post.get({ plain: true }));
@@ -108,7 +118,6 @@ router.get("/follow", withAuth, async (req, res) => {
 				},
 				{
 					model: Post,
-					include: [{ model: User, attributes: { exclude: ["password"] } }],
 				},
 			],
 		});

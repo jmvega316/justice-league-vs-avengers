@@ -6,6 +6,7 @@ const Hero = require("./HeroModel");
 // one user can have many posts
 User.hasMany(Post, {
 	foreignKey: "user_id",
+	onDelete:'CASCADE',
 });
 
 // many posts can belong to one user
@@ -16,6 +17,7 @@ Post.belongsTo(User, {
 // one user can also have many comments
 User.hasMany(Comment, {
 	foreignKey: "user_id",
+	onDelete:'CASCADE',
 });
 
 // one comment can only belong to one user
@@ -26,6 +28,7 @@ Comment.belongsTo(User, {
 //one post can have many comments
 Post.hasMany(Comment, {
 	foreignKey: "post_id",
+	onDelete:'CASCADE',
 });
 
 // but one comment can only belong to one post, just like user
@@ -36,6 +39,7 @@ Comment.belongsTo(Post, {
 // one post can have many (2) heros
 Post.hasMany(Hero, {
 	foreignKey: "post_id",
+	onDelete:'CASCADE',
 });
 
 // heroes belongs to post
