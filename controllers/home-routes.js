@@ -36,6 +36,7 @@ router.get("/posts/:id", async (req, res) => {
 					include: [{ model: User, attributes: { exclude: ["password"] } }],
 				},
 				{
+					//include model avengers then another include for model justice league
 					model: Hero,
 					attributes: { exclude: ["category"] },
 				},
@@ -98,23 +99,6 @@ router.get("/dashboard/newpost", withAuth, async (req, res) => {
 			justiceLeague,
 			loggedIn: req.session.loggedIn,
 		});
-	} catch (err) {
-		res.status(500).json(err);
-	}
-});
-
-//
-router.get("/dashboard/newpost/:category", withAuth, async (req, res) => {
-	try {
-		const heroData = await Hero.findAll({
-			where: {
-				category: req.params.category,
-			},
-		});
-
-		const heroes = heroData.map((hero) => hero.get({ plain: true }));
-
-		res.render("heroes", { heroes });
 	} catch (err) {
 		res.status(500).json(err);
 	}
