@@ -6,8 +6,17 @@ const withAuth = require("../utils/auth");
 router.get("/", async (req, res) => {
 	try {
 		const postData = await Post.findAll({
-			include: [{ model: User, attributes: { exclude: ["password"] } }],
-			// I want to order in descending orderr
+			include: [
+				{
+					model: User,
+					attributes: { exclude: ["password"] },
+				},
+				{
+					model: Comment,
+					include: [{ model: User, attributes: { exclude: ["password"] } }],
+				},
+					],
+			// I want to order in descending order
 			order: [["id", "DESC"]],
 		});
 
@@ -49,19 +58,20 @@ router.get("/posts/:id", async (req, res) => {
 	}
 });
 
-// the other page to render is the dashbaord page
+// get posts by user on the dashbaord page
 router.get("/dashboard", withAuth, async (req, res) => {
 	try {
 		const postData = await Post.findAll({
 			where: {
 				user_id: req.session.user_id,
 			},
+			order: [["id", "DESC"]],
 		});
 
-		const dashboard = postData.map((post) => post.get({ plain: true }));
+		const userPosts = postData.map((post) => post.get({ plain: true }));
 
 		res.render("dashboard", {
-			dashboard,
+			userPosts,
 			loggedIn: req.session.loggedIn,
 		});
 	} catch (err) {
@@ -84,7 +94,7 @@ router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
 
 		const editPost = editData.get({ plain: true });
 
-		res.render("editPost", {
+		res.render("editpost", {
 			editPost,
 			loggedIn: req.session.loggedIn,
 		});
@@ -92,17 +102,24 @@ router.get("/dashboard/editpost/:id", withAuth, async (req, res) => {
 		res.status(500).json(err);
 	}
 });
+
 // if possible, on a separte page, I want to be able to render posts that I have commented
 
-router.get("/following", withAuth, async (req, res) => {
+router.get("/follow", withAuth, async (req, res) => {
 	try {
 		const commentedPostData = await Comment.findAll({
 			where: {
 				user_id: req.session.user_id,
 			},
-			include: {
-				model: Post,
-			},
+			include: [
+				{
+					model: User,
+					attributes: { exclude: ["password"] },
+				},
+				{
+					model: Post,
+				},
+			],
 		});
 
 		const followComment = commentedPostData.map((post) =>

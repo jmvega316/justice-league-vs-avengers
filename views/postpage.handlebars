@@ -1,0 +1,44 @@
+ <div class="jumbotron2 jumbotron-fluid text-center">
+  <div class="container">
+     <h2 class="p-2">
+     {{singlePost.title}}
+    </h2>
+  </div>
+</div>
+
+<article class="text-center">
+  <div class="post-body" >
+    <p class="p-4" style="font-size:24px">{{singlePost.contents}}</p>
+  </div>
+  <div class="meta mt-5">
+    {{singlePost.user.username}} created on {{format_date singlePost.createdAt}} at {{format_time singlePost.createdAt}}
+  </div>
+</div>
+
+<div class="comment-area text-center" style="border-top: 1px solid #ccc">
+  <form class="comment-form mt-5">
+
+    <div>
+      <textarea name="comment-body"></textarea>
+    </div>
+
+    <div>
+      <button type="submit">Add comment</button>
+    </div>
+  </form>
+
+
+  {{#each singlePost.comments as |comments|}}
+  <div class="comment" >
+    <p>
+      {{contents}}
+    </p>
+    <div class="meta">
+      {{user.username}} on {{format_date createdAt}}
+    </div>
+  </div>
+  {{/each}}
+</div>
+
+<script src="/javascript/comment.js"></script>
+

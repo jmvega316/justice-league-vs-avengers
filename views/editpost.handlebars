@@ -1,0 +1,27 @@
+ <div class="jumbotron1 jumbotron-fluid text-center">
+  <div class="container">
+     <h2 class="p-2">
+    Edit Post
+    </h2>
+  </div>
+</div>
+
+<article class="text-center">
+ 
+  <form class="edit-post-form form-fluid">
+    <input type="hidden" name="editPostId" value={{editPost.id}}/>
+    <div class="mt-4">
+            <label for="editpost-title">Title</label>
+            <input type="text" name="editpost-title" value="{{editPost.title}}"></input>
+    </div>
+    <div class="mt-5">
+            <label for="editpost-content">Content</label>
+            <textarea rows="6" cols="80" name="editpost-content">{{editPost.contents}}</textarea>
+    </div>
+    <button class="mt-4" type="submit">Save post</button>
+    <button class="delete-post-btn mt-4" type="button">Delete post</button>
+  </form>
+</article>
+
+<script src="/javascript/edit-post.js"></script>
+<script src="/javascript/delete-post.js"></script>
