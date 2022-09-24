@@ -1,7 +1,8 @@
 * {
   box-sizing: border-box;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  box-shadow: inset;
 }
 
 body, html {
@@ -9,21 +10,27 @@ body, html {
   padding: 0;
   margin: 0;
   font-family: sans-serif;
+  font-size: larger;
   color: tomato;
-  background-color: black;
+  background-color: blue
 }
 
 a {
+  cursor: pointer;
   text-decoration: none;
   font-weight: bold;
   transition: color .1s;
   font-size: 25;
   margin: 30px;
-  color: dodgerblue
+  color: black;
+  border-style: solid;
+  box-sizing: border-box;
+  padding: 0%;
 }
 
 a:hover {
   color: dodgerblue;
+  
 }
 
 button {
@@ -39,13 +46,13 @@ button {
 
 .jumbotron1 {
   background-color: slateblue ;
-  padding: 26px;
+  padding: 20%;
   margin-bottom: 30px;
 }
 
 .jumbotron2 {
-  background-color: gold;
-  padding: 26px;
+  background-color: darkred;
+  padding: 20px;
   margin-bottom: 30px;
 }
 
@@ -66,6 +73,8 @@ input {
 
 nav {
   text-align: center;
+  position: relative ; 
+
 }
 
 .post-list {
@@ -114,22 +123,29 @@ form label {
 }
 
 header {
-  border-bottom: 1px solid #ccc;
-  display: flex;
+  border-bottom: 5px solid rgb(0, 0, 0);
   justify-content: space-between;
   align-items: center;
   padding: 0 10%;
+  
 }
 
 h1, h2 {
-  font-family:fantasy;
-  color:white;
+  font-family:'Comic Book.otf' ;
+  color:black;
+  text-transform: uppercase;
+  text-decoration:underline;
+  font-size: x-large;
+  margin-right: 10px;
+  box-shadow: 200% darkblue;
+  float: initial;
 }
 
 h1 {
-  text-align: center;
+  text-align: left;
   padding: 20px;
   font-size: 40;
+  
 }
 
 div.post-body {
